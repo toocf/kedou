@@ -1,0 +1,16 @@
+{
+    "name"  : "workerman/workerman-todpole",
+    "type"  : "project",
+    "keywords": ["chat"],
+    "homepage": "http://www.workerman.net",
+    "license" : "MIT",
+    "require": {
+        "workerman/gateway-worker" : ">=3.0.0",
+        "workerman/workerman" : "~4.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "" : "./"
+        }
+    }
+}

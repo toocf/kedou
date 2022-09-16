@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>乘风聊天室</title>
+    <meta name="title" content="乘风导航"/>
+    <meta name="description" content="小蝌蚪交互聊天室"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="YES">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script src="js/modernizr.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <canvas id="site"></canvas>
+    <input id="chat" type="text" />
+    <div id="bubble"></div>
+
+    <div class="menu">
+        <div class="opt opt-home">
+            <img src="./images/home.png" />
+        </div>
+        <div class="opt opt-set">
+            <img src="./images/set.png" />
+        </div>
+        <div class="opt opt-info">
+            <img src="./images/info.png" />
+        </div>
+        <div class="opt opt-go">
+            <img src="./images/dm.png" title="开启或关闭弹幕" />
+        </div>
+    </div>
+    <div class="set">
+        <div class="set-name">
+            <input type="text" id="nick" maxlength="22" placeholder="我的名字">
+        </div>
+        <div class="set-sex">
+            <div class="sex-box">
+                <label class="s1" for="sex1">男<input type="radio" id="sex1" name="sex"></label>
+                <label class="s0" for="sex0"><input type="radio" id="sex0" name="sex">女</label>
+            </div>
+        </div>
+        <div class="set-btn">
+            <div class="btn-cls">关闭</div>
+        </div>
+    </div>
+    <div class="info">
+        <div class="info-p">
+            使用方法：在该页面直接打字，会捕捉到文字内容，回车即发送内容。
+        </div>
+        <div class="info-p">
+            弹幕：弹幕数据只在客户端临时展示，刷新即清空。
+        </div>
+        <div class="info-p">
+            微信群：蝌蚪聊天室
+        </div>
+        <div class="info-p">
+            微信：toocf_com
+        </div>
+        <div class="info-btn">
+            <div class="info-cls">关闭</div>
+        </div>
+    </div>
+
+    <div id="room">
+        <p> 》》》 弹幕来袭 《《《 </p>
+    </div>
+
+    <div id="fail"><div class="box"><div>服务器君罢工啦，快告诉站长吧！(微信：toocf_com) </div></div></div>
+    <div id="broken"><div class="box"><div>与服务器断开连接了，您可以重新刷新页面。 </div></div></div>
+    <div id="unsupported"><div class="box"><div>您的浏览器不支持该游戏！ </div></div></div>
+</body>
+
+<script>
+    document.body.onselectstart = function () {return false}
+    if (Modernizr.canvas && Modernizr.websockets) {
+        InitApp()
+    } else {
+        $('#unsupported').show()
+    }
+
+    $('.opt-home').on('click', () => {
+        window.location.href = "https://toocf.com"
+    })
+
+    $('.opt-set').on('click', () => {
+        $('.menu').addClass('goback')
+        $('.set').addClass('comeback')
+    })
+    $('.btn-cls').on('click', () => {
+        $('.menu').removeClass('goback')
+        $('.set').removeClass('comeback')
+    })
+
+    $('.opt-info').on('click', () => {
+        $('.menu').addClass('goback')
+        $('.info').addClass('comeback')
+    })
+    $('.info-cls').on('click', () => {
+        $('.menu').removeClass('goback')
+        $('.info').removeClass('comeback')
+    })
+    $('.opt-go').on('click', () => {
+        let rm = $('#room')
+        if (rm.hasClass('come')) {
+            rm.removeClass('come')
+        } else {
+            rm.addClass('come')
+        }
+    })
+</script>
+</html>
